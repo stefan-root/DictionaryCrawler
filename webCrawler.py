@@ -21,8 +21,6 @@ class MyWebCrawler(HTMLParser):
                     w = MyWebCrawler(link, iTargetLevel - 1)
                     for word in w.words:
                         self.addWord(word)
-                    for link in w.links:
-                        self.addLink(link)
 
     def handle_starttag(self, tag, attrs):
         if tag == "a": 
@@ -88,3 +86,5 @@ class MyWebCrawler(HTMLParser):
 #Main
 
 w = MyWebCrawler("https://de.wikipedia.org/wiki/Nico_Kuhn", 2)
+w.words.sort()
+w.writeToFile(w.words, "test")
